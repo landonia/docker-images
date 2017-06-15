@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+    mysql:
+        image: mysql
+        ports:
+            - "3307:3306"
+        environment:
+            MYSQL_USER: 'acme'
+            MYSQL_PASSWORD: 'tinTin15'
+            MYSQL_ROOT_PASSWORD: 'test'
+            MYSQL_DATABASE: 'acme'
+        stdin_open: true
+        tty: true
+        volumes_from:
+            - fetchsql
+
+    fetchsql:
+        image: acme-docker.jfrog.io/fetch-sql:1.0
+        #environment:
+        #    SQL_URL: 'http://fileserver:8090/sql.tar.gz'
+        links:
+            - fileserver
+
+    fileserver:
+        image: fileserver
