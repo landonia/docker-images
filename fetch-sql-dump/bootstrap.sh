@@ -25,8 +25,8 @@ function printInfo() {
     printDate "${INFO}Info: $1${NC}"
 }
 
-if [ -z ${SQL_URL+x} ]; then
-    printWarning "No file to fetch.... Exiting"
+if [ -z "${SQL_URL}" ]; then
+    printWarning "No dump file URL specified.... Exiting"
     exit 1
 fi
 
